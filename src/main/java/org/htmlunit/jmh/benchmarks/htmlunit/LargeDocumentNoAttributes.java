@@ -793,7 +793,7 @@ public class LargeDocumentNoAttributes {
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Warmup(iterations = 5, time = 2, timeUnit = TimeUnit.SECONDS)
     @Measurement(iterations = 3, time = 5, timeUnit = TimeUnit.SECONDS)
-    public HtmlPage largeHtml() throws Exception {
+    public HtmlPage largeHtmlNoAttributes() throws Exception {
         return webClient.loadHtmlCodeIntoCurrentWindow(html);
     }
 }
