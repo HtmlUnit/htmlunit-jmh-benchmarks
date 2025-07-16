@@ -39,7 +39,6 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 public class AverageHtmlBenchmark {
 
     String html = """
-
 <!DOCTYPE html>
 <html lang="en">
         <head>

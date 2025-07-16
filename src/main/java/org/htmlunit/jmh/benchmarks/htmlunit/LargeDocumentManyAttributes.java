@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 import org.htmlunit.BrowserVersion;
 import org.htmlunit.WebClient;
 import org.htmlunit.html.HtmlPage;
+import org.htmlunit.html.parser.neko.HtmlUnitNekoHtmlParser;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -793,7 +794,7 @@ public class LargeDocumentManyAttributes {
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Warmup(iterations = 5, time = 2, timeUnit = TimeUnit.SECONDS)
     @Measurement(iterations = 3, time = 5, timeUnit = TimeUnit.SECONDS)
-    public HtmlPage largeHtmlManyAttriubutes() throws Exception {
+    public HtmlPage largeHtmlManyAttributes() throws Exception {
         return webClient.loadHtmlCodeIntoCurrentWindow(html);
     }
 }

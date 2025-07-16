@@ -31,7 +31,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
 @State(Scope.Thread)
-@Fork(1)
+@Fork(5)
 public class LargeDocumentNoAttributes {
 
     String html = """
