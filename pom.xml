@@ -15,12 +15,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <uberjar.name>benchmarks</uberjar.name>
 
-        <htmlunit.version>4.11.1</htmlunit.version>
+        <htmlunit.version>4.200.0-SNAPSHOT</htmlunit.version>
         <jmh.version>1.37</jmh.version>
     </properties>
 
