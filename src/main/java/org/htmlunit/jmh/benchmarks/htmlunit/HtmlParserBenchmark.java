@@ -46,7 +46,7 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
 /**
- * @author René Schwietzke
+ * @authorRenÃ© Schwietzke
  * @author Ronald Brill
  */
 @State(Scope.Thread)
