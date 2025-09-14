@@ -62,10 +62,10 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 @Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
 @Fork(1)
 public class HTMLELementsBenchmark {
-    private static final String simpleFile = "src/test/resources/org/htmlunit/cyberneko/benchmark/simple.html";
-    private static final String smallFile = "src/test/resources/org/htmlunit/cyberneko/benchmark/small-xc-homepage.html";
-    private static final String mediumFile = "src/test/resources/org/htmlunit/cyberneko/benchmark/wikipedia-de-hp.html";
-    private static final String largeFile = "src/test/resources/org/htmlunit/cyberneko/benchmark/puma-de-hp.html";
+    private static final String simpleFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/simple.html";
+    private static final String smallFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/small-xc-homepage.html";
+    private static final String mediumFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/wikipedia-de-hp.html";
+    private static final String largeFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/puma-de-hp.html";
 
     private List<String> tagNames = new ArrayList<>(1000);
 
