@@ -79,18 +79,17 @@ public class HtmlParserBenchmark {
         return parser;
     }
 
-//    @Benchmark
-//    public XMLParserConfiguration simpleParserWithCache() throws XNIException, IOException {
-//        final XMLParserConfiguration parser = new HTMLConfiguration(new HTMLElements.HTMLElementsWithCache(htmlElements));
-//        parser.parse(new XMLInputSource(null, file, null));
-//
-//        return parser;
-//    }
-//
+    @Benchmark
+    public XMLParserConfiguration simpleParserWithCache() throws XNIException, IOException {
+        final XMLParserConfiguration parser = new HTMLConfiguration(new HTMLElements.HTMLElementsWithCache(htmlElements));
+        parser.parse(new XMLInputSource(null, file, null));
+
+        return parser;
+    }
+
     @Benchmark
     public SAXParser saxParser() throws XNIException, IOException {
-        // final SAXParser parser = new SAXParser(htmlElements);
-        final SAXParser parser = new SAXParser();
+        final SAXParser parser = new SAXParser(htmlElements);
 
         ContentHandler myContentHandler = new NoOpContentHandler();
         parser.setContentHandler(myContentHandler);
@@ -100,17 +99,17 @@ public class HtmlParserBenchmark {
         return parser;
     }
 
-//    @Benchmark
-//    public SAXParser saxParserWithCache() throws XNIException, IOException {
-//        final SAXParser parser = new SAXParser(new HTMLElements.HTMLElementsWithCache(htmlElements));
-//
-//        ContentHandler myContentHandler = new NoOpContentHandler();
-//        parser.setContentHandler(myContentHandler);
-//
-//        parser.parse(new XMLInputSource(null, file, null));
-//
-//        return parser;
-//    }
+    @Benchmark
+    public SAXParser saxParserWithCache() throws XNIException, IOException {
+        final SAXParser parser = new SAXParser(new HTMLElements.HTMLElementsWithCache(htmlElements));
+
+        ContentHandler myContentHandler = new NoOpContentHandler();
+        parser.setContentHandler(myContentHandler);
+
+        parser.parse(new XMLInputSource(null, file, null));
+
+        return parser;
+    }
 
     @Benchmark
     public DOMParser domParser() throws XNIException, IOException {
@@ -122,15 +121,15 @@ public class HtmlParserBenchmark {
         return parser;
     }
 
-//    @Benchmark
-//    public DOMParser domParserWithCache() throws XNIException, IOException {
-//        final DOMParser parser = new DOMParser(new HTMLElements.HTMLElementsWithCache(htmlElements), HTMLDocumentImpl.class);
-//        XMLInputSource src = new XMLInputSource(null, file, null);
-//        src.setEncoding("UTF-8");
-//        parser.parse(src);
-//
-//        return parser;
-//    }
+    @Benchmark
+    public DOMParser domParserWithCache() throws XNIException, IOException {
+        final DOMParser parser = new DOMParser(new HTMLElements.HTMLElementsWithCache(htmlElements), HTMLDocumentImpl.class);
+        XMLInputSource src = new XMLInputSource(null, file, null);
+        src.setEncoding("UTF-8");
+        parser.parse(src);
+
+        return parser;
+    }
 
     public static void main(String[] args) throws RunnerException
     {
