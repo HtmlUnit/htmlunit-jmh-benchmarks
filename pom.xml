@@ -20,7 +20,7 @@
 
         <uberjar.name>benchmarks</uberjar.name>
 
-        <htmlunit.version>4.17.0-SNAPSHOT</htmlunit.version>
+        <htmlunit.version>4.16.0</htmlunit.version>
         <jmh.version>1.37</jmh.version>
     </properties>
 

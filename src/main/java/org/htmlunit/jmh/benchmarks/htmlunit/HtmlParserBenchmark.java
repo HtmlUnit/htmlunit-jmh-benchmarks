@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.htmlunit.cyberneko.HTMLConfiguration;
+import org.htmlunit.cyberneko.HTMLElements;
 import org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl;
 import org.htmlunit.cyberneko.parsers.DOMParser;
 import org.htmlunit.cyberneko.parsers.SAXParser;
@@ -64,20 +65,31 @@ public class HtmlParserBenchmark {
     @Param({simpleFile, smallFile, mediumFile, largeFile})
     String file;
 
+    private static final HTMLElements htmlElements = new HTMLElements();
+
     @Setup
     public void setup(BenchmarkParams params) throws IOException {
     }
 
     @Benchmark
     public XMLParserConfiguration simpleParser() throws XNIException, IOException {
-        final XMLParserConfiguration parser = new HTMLConfiguration();
+        final XMLParserConfiguration parser = new HTMLConfiguration(htmlElements);
         parser.parse(new XMLInputSource(null, file, null));
 
         return parser;
     }
 
+//    @Benchmark
+//    public XMLParserConfiguration simpleParserWithCache() throws XNIException, IOException {
+//        final XMLParserConfiguration parser = new HTMLConfiguration(new HTMLElements.HTMLElementsWithCache(htmlElements));
+//        parser.parse(new XMLInputSource(null, file, null));
+//
+//        return parser;
+//    }
+//
     @Benchmark
     public SAXParser saxParser() throws XNIException, IOException {
+        // final SAXParser parser = new SAXParser(htmlElements);
         final SAXParser parser = new SAXParser();
 
         ContentHandler myContentHandler = new NoOpContentHandler();
@@ -88,6 +100,18 @@ public class HtmlParserBenchmark {
         return parser;
     }
 
+//    @Benchmark
+//    public SAXParser saxParserWithCache() throws XNIException, IOException {
+//        final SAXParser parser = new SAXParser(new HTMLElements.HTMLElementsWithCache(htmlElements));
+//
+//        ContentHandler myContentHandler = new NoOpContentHandler();
+//        parser.setContentHandler(myContentHandler);
+//
+//        parser.parse(new XMLInputSource(null, file, null));
+//
+//        return parser;
+//    }
+
     @Benchmark
     public DOMParser domParser() throws XNIException, IOException {
         final DOMParser parser = new DOMParser(HTMLDocumentImpl.class);
@@ -97,6 +121,16 @@ public class HtmlParserBenchmark {
 
         return parser;
     }
+
+//    @Benchmark
+//    public DOMParser domParserWithCache() throws XNIException, IOException {
+//        final DOMParser parser = new DOMParser(new HTMLElements.HTMLElementsWithCache(htmlElements), HTMLDocumentImpl.class);
+//        XMLInputSource src = new XMLInputSource(null, file, null);
+//        src.setEncoding("UTF-8");
+//        parser.parse(src);
+//
+//        return parser;
+//    }
 
     public static void main(String[] args) throws RunnerException
     {
