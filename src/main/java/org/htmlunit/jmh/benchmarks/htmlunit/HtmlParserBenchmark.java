@@ -61,8 +61,9 @@ public class HtmlParserBenchmark {
     private static final String smallFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/small-xc-homepage.html";
     private static final String mediumFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/wikipedia-de-hp.html";
     private static final String largeFile = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/puma-de-hp.html";
+    private static final String largeFile2 = "src/main/resources/org/htmlunit/jmh/benchmarks/htmlunit/html-standard.html";
 
-    @Param({simpleFile, smallFile, mediumFile, largeFile})
+    @Param({simpleFile, smallFile, mediumFile, largeFile, largeFile2})
     String file;
 
     private static final HTMLElements htmlElements = new HTMLElements();
@@ -113,7 +114,7 @@ public class HtmlParserBenchmark {
 
     @Benchmark
     public DOMParser domParser() throws XNIException, IOException {
-        final DOMParser parser = new DOMParser(HTMLDocumentImpl.class);
+        final DOMParser parser = new DOMParser(htmlElements, HTMLDocumentImpl.class);
         XMLInputSource src = new XMLInputSource(null, file, null);
         src.setEncoding("UTF-8");
         parser.parse(src);
