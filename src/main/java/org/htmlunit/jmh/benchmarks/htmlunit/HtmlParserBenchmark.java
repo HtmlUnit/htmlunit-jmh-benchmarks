@@ -75,6 +75,7 @@ public class HtmlParserBenchmark {
     @Benchmark
     public XMLParserConfiguration simpleParser() throws XNIException, IOException {
         final XMLParserConfiguration parser = new HTMLConfiguration(htmlElements);
+
         parser.parse(new XMLInputSource(null, file, null));
 
         return parser;
@@ -83,13 +84,25 @@ public class HtmlParserBenchmark {
     @Benchmark
     public XMLParserConfiguration simpleParserWithCache() throws XNIException, IOException {
         final XMLParserConfiguration parser = new HTMLConfiguration(new HTMLElements.HTMLElementsWithCache(htmlElements));
+
         parser.parse(new XMLInputSource(null, file, null));
 
         return parser;
     }
 
     @Benchmark
-    public SAXParser saxParser() throws XNIException, IOException {
+    public XMLParserConfiguration simpleParserLowercase() throws Exception {
+        final XMLParserConfiguration parser = new HTMLConfiguration(htmlElements);
+        parser.setProperty("http://cyberneko.org/html/properties/names/elems", "lower");
+        parser.setProperty("http://cyberneko.org/html/properties/names/attrs", "lower");
+
+        parser.parse(new XMLInputSource(null, file, null));
+
+        return parser;
+    }
+
+    @Benchmark
+    public SAXParser saxParser() throws Exception {
         final SAXParser parser = new SAXParser(htmlElements);
 
         ContentHandler myContentHandler = new NoOpContentHandler();
@@ -101,7 +114,7 @@ public class HtmlParserBenchmark {
     }
 
     @Benchmark
-    public SAXParser saxParserWithCache() throws XNIException, IOException {
+    public SAXParser saxParserWithCache() throws Exception {
         final SAXParser parser = new SAXParser(new HTMLElements.HTMLElementsWithCache(htmlElements));
 
         ContentHandler myContentHandler = new NoOpContentHandler();
@@ -113,21 +126,51 @@ public class HtmlParserBenchmark {
     }
 
     @Benchmark
-    public DOMParser domParser() throws XNIException, IOException {
+    public SAXParser saxParserLowercase() throws Exception {
+        final SAXParser parser = new SAXParser(new HTMLElements.HTMLElementsWithCache(htmlElements));
+        parser.setProperty("http://cyberneko.org/html/properties/names/elems", "lower");
+        parser.setProperty("http://cyberneko.org/html/properties/names/attrs", "lower");
+
+        ContentHandler myContentHandler = new NoOpContentHandler();
+        parser.setContentHandler(myContentHandler);
+
+        parser.parse(new XMLInputSource(null, file, null));
+
+        return parser;
+    }
+
+    @Benchmark
+    public DOMParser domParser() throws Exception {
         final DOMParser parser = new DOMParser(htmlElements, HTMLDocumentImpl.class);
+
         XMLInputSource src = new XMLInputSource(null, file, null);
         src.setEncoding("UTF-8");
+
         parser.parse(src);
 
         return parser;
     }
 
     @Benchmark
-    public DOMParser domParserWithCache() throws XNIException, IOException {
+    public DOMParser domParserWithCache() throws Exception {
         final DOMParser parser = new DOMParser(new HTMLElements.HTMLElementsWithCache(htmlElements), HTMLDocumentImpl.class);
+
         XMLInputSource src = new XMLInputSource(null, file, null);
         src.setEncoding("UTF-8");
+
         parser.parse(src);
+
+        return parser;
+    }
+
+    @Benchmark
+    public DOMParser domParserLowercase() throws Exception {
+        final DOMParser parser = new DOMParser(htmlElements, HTMLDocumentImpl.class);
+        parser.setProperty("http://cyberneko.org/html/properties/names/elems", "lower");
+        parser.setProperty("http://cyberneko.org/html/properties/names/attrs", "lower");
+
+        XMLInputSource src = new XMLInputSource(null, file, null);
+        src.setEncoding("UTF-8");
 
         return parser;
     }
