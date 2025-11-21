@@ -73,16 +73,15 @@ public class HTMLELementsBenchmark {
     String file;
 
     // our HTMLElements for testing
-    org.htmlunit.cyberneko.htmlelements.old416.HTMLElements htmlElementsOld416 = new org.htmlunit.cyberneko.htmlelements.old416.HTMLElements();
-    org.htmlunit.cyberneko.htmlelements.old.HTMLElements htmlElementsOld = new org.htmlunit.cyberneko.htmlelements.old.HTMLElements();
-    org.htmlunit.cyberneko.htmlelements.rbrill.HTMLElements htmlElementsNew = new org.htmlunit.cyberneko.htmlelements.rbrill.HTMLElements();
-    org.htmlunit.cyberneko.htmlelements.uncached.HTMLElements htmlElementsUncached = new org.htmlunit.cyberneko.htmlelements.uncached.HTMLElements();
-    org.htmlunit.cyberneko.htmlelements.new417.HTMLElements.HTMLElementsWithCache htmlElementsNew417 = 
-            new org.htmlunit.cyberneko.htmlelements.new417.HTMLElements.HTMLElementsWithCache(
-                    new org.htmlunit.cyberneko.htmlelements.new417.HTMLElements());
-    org.htmlunit.cyberneko.htmlelements.new417_2.HTMLElements.HTMLElementsWithCache htmlElementsNew417_2 = 
-            new org.htmlunit.cyberneko.htmlelements.new417_2.HTMLElements.HTMLElementsWithCache(
-                    new org.htmlunit.cyberneko.htmlelements.new417_2.HTMLElements());
+    private static final org.htmlunit.cyberneko.htmlelements.old416.HTMLElements htmlElementsOld416 = new org.htmlunit.cyberneko.htmlelements.old416.HTMLElements();
+    private static final org.htmlunit.cyberneko.htmlelements.old.HTMLElements htmlElementsOld = new org.htmlunit.cyberneko.htmlelements.old.HTMLElements();
+    private static final org.htmlunit.cyberneko.htmlelements.rbrill.HTMLElements htmlElementsNew = new org.htmlunit.cyberneko.htmlelements.rbrill.HTMLElements();
+    private static final org.htmlunit.cyberneko.htmlelements.uncached.HTMLElements htmlElementsUncached = new org.htmlunit.cyberneko.htmlelements.uncached.HTMLElements();
+    private static final org.htmlunit.cyberneko.htmlelements.new417.HTMLElements.HTMLElementsWithCache htmlElementsNew417 =
+            new org.htmlunit.cyberneko.htmlelements.new417.HTMLElements.HTMLElementsWithCache(new org.htmlunit.cyberneko.htmlelements.new417.HTMLElements());
+    private static final org.htmlunit.cyberneko.htmlelements.new417_2.HTMLElements.HTMLElementsWithCache htmlElementsNew417_2 =
+            new org.htmlunit.cyberneko.htmlelements.new417_2.HTMLElements.HTMLElementsWithCache(new org.htmlunit.cyberneko.htmlelements.new417_2.HTMLElements());
+
     @Setup
     public void setup(BenchmarkParams params) throws IOException {
         // extract all tag names in a cheap way, good enough for our purpose
