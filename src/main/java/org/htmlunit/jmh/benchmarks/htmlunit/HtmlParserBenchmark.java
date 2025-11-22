@@ -127,7 +127,7 @@ public class HtmlParserBenchmark {
 
     @Benchmark
     public SAXParser saxParserLowercase() throws Exception {
-        final SAXParser parser = new SAXParser(new HTMLElements.HTMLElementsWithCache(htmlElements));
+        final SAXParser parser = new SAXParser(htmlElements);
         parser.setProperty("http://cyberneko.org/html/properties/names/elems", "lower");
         parser.setProperty("http://cyberneko.org/html/properties/names/attrs", "lower");
 
@@ -171,6 +171,8 @@ public class HtmlParserBenchmark {
 
         XMLInputSource src = new XMLInputSource(null, file, null);
         src.setEncoding("UTF-8");
+
+        parser.parse(src);
 
         return parser;
     }
